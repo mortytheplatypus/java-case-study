@@ -41,18 +41,6 @@ class AppTest {
         assertEquals("For input string: \"zzz\"", ex.getMessage());
     }
 
-    @Test
-    void mainPrintsThreadsTimesQuotesLines() {
-        int threads = random.nextInt(1, 10);
-        int quotes = random.nextInt(1, 10);
-        String output = runMainCapturingStdout(String.valueOf(threads), String.valueOf(quotes));
-        String[] lines = output.split("\\R");
-        assertEquals(threads * quotes, lines.length);
-        for (String line : lines) {
-            assertValidLine(line);
-        }   
-    }
-
     // googled how to test lines printed :)
     private String runMainCapturingStdout(String threads, String quotes) {
         PrintStream original = System.out;
@@ -96,4 +84,5 @@ class AppTest {
             assertValidLine(line);
         }
     }
+
 }
