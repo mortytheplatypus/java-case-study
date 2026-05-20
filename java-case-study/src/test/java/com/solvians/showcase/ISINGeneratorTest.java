@@ -12,7 +12,7 @@ class ISINGeneratorTest {
 
     private static final Pattern ISIN_PATTERN = Pattern.compile("^[A-Z]{2}[A-Z0-9]{9}[0-9]$");
 
-    private ISINGenerator isinGenerator = new ISINGenerator();
+    private final ISINGenerator isinGenerator = new ISINGenerator();
 
     @Test
     void calculateCheckDigitForKnownExample() {
