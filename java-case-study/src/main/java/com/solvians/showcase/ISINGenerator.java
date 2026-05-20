@@ -36,7 +36,7 @@ public class ISINGenerator {
         return isin.toString();
     }
 
-    private String calculateCheckDigit(String isinBase) {
+    public String calculateCheckDigit(String isinBase) {
         String isinNumeric = convertToNumericString(isinBase);
 
         boolean multiply = true;
@@ -56,7 +56,7 @@ public class ISINGenerator {
         return String.valueOf(roundedUp - sum);
     }
 
-    private String convertToNumericString(String isinBase) {
+    public String convertToNumericString(String isinBase) {
         StringBuilder numericString = new StringBuilder();
 
         for (int i = 0; i < isinBase.length(); i++) {
