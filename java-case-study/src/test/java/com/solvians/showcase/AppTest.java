@@ -9,7 +9,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AppTest {
 
@@ -44,25 +43,6 @@ class AppTest {
         return buffer.toString().trim();
     }
 
-    private void assertValidLine(String line) {
-        String[] fields = line.split(",", -1);
-        assertEquals(6, fields.length, "line: " + line);
-        assertTrue(Long.parseLong(fields[0]) > 0);
-        assertTrue(Constants.ISIN_PATTERN.matcher(fields[1]).matches());
-        assertValidPrice(fields[2]);
-        assertValidSize(fields[3], Constants.MIN_BID_SIZE, Constants.MAX_BID_SIZE);
-        assertValidPrice(fields[4]);
-        assertValidSize(fields[5], Constants.MIN_ASK_SIZE, Constants.MAX_ASK_SIZE);
-    }
-
-    private void assertValidPrice(String price) {
-        assertTrue(price.matches("^\\d+\\.\\d{2}$") && Double.parseDouble(price) >= Constants.MIN_PRICE && Double.parseDouble(price) <= Constants.MAX_PRICE);
-    }
-
-    private void assertValidSize(String size, int min, int max) {
-        assertTrue(Integer.parseInt(size) >= min && Integer.parseInt(size) <= max);
-    }
-
     @RepeatedTest(10)
     void mainPrintsThreadsTimesQuotesLinesRepeatedly() {
         int threads = random.nextInt(1, 10);
@@ -71,7 +51,7 @@ class AppTest {
         String[] lines = output.split("\\R");
         assertEquals(threads * quotes, lines.length);
         for (String line : lines) {
-            assertValidLine(line);
+            CertificateUpdateLineAssertions.assertValidLine(line);
         }
     }
 
