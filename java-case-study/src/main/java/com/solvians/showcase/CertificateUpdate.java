@@ -3,14 +3,9 @@ package com.solvians.showcase;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class CertificateUpdate implements Callable<String> {
+import static com.solvians.showcase.Constants.*;
 
-    private static final double MIN_PRICE = 100.00;
-    private static final double MAX_PRICE = 200.00;
-    private static final int MIN_BID_SIZE = 1000;
-    private static final int MAX_BID_SIZE = 5000;
-    private static final int MIN_ASK_SIZE = 1000;
-    private static final int MAX_ASK_SIZE = 10000;
+public class CertificateUpdate implements Callable<String> {
 
     private final ISINGenerator isinGenerator;
     private final ThreadLocalRandom random;

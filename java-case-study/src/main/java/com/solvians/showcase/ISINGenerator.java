@@ -2,13 +2,9 @@ package com.solvians.showcase;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class ISINGenerator {
+import static com.solvians.showcase.Constants.*;
 
-    private static final String UPPERCASE_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    private static final String ALPHANUMERIC_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    private static final int ISIN_LENGTH = 12;
-    private static final int UPPERCASE_LEN_LIMIT = 2;
-    private static final int ALPHANUMERIC_LEN_LIMIT = 9;
+public class ISINGenerator {
 
     private final ThreadLocalRandom random;
 

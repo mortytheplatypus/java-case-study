@@ -7,6 +7,12 @@ public final class Constants {
     private Constants() {
     }
 
+    public static final String UPPERCASE_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    public static final String ALPHANUMERIC_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    public static final int ISIN_LENGTH = 12;
+    public static final int UPPERCASE_LEN_LIMIT = 2;
+    public static final int ALPHANUMERIC_LEN_LIMIT = 9;
+
     public static final double MIN_PRICE = 100.00;
     public static final double MAX_PRICE = 200.00;
     public static final int MIN_BID_SIZE = 1000;
