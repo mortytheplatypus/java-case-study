@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class CertificateUpdateGenerator {
+
     private final int threads;
     private final int quotes;
 

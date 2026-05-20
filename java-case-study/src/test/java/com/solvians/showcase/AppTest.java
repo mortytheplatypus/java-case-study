@@ -6,22 +6,12 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AppTest {
-
-    private static final double MIN_PRICE = 100.00;
-    private static final double MAX_PRICE = 200.00;
-    private static final int MIN_BID_SIZE = 1000;
-    private static final int MAX_BID_SIZE = 5000;
-    private static final int MIN_ASK_SIZE = 1000;
-    private static final int MAX_ASK_SIZE = 10000;
-
-    private static final Pattern ISIN_PATTERN = Pattern.compile("^[A-Z]{2}[A-Z0-9]{9}[0-9]$");
 
     private static final ThreadLocalRandom random = ThreadLocalRandom.current();
 
@@ -58,15 +48,15 @@ class AppTest {
         String[] fields = line.split(",", -1);
         assertEquals(6, fields.length, "line: " + line);
         assertTrue(Long.parseLong(fields[0]) > 0);
-        assertTrue(ISIN_PATTERN.matcher(fields[1]).matches());
+        assertTrue(Constants.ISIN_PATTERN.matcher(fields[1]).matches());
         assertValidPrice(fields[2]);
-        assertValidSize(fields[3], MIN_BID_SIZE, MAX_BID_SIZE);
+        assertValidSize(fields[3], Constants.MIN_BID_SIZE, Constants.MAX_BID_SIZE);
         assertValidPrice(fields[4]);
-        assertValidSize(fields[5], MIN_ASK_SIZE, MAX_ASK_SIZE);
+        assertValidSize(fields[5], Constants.MIN_ASK_SIZE, Constants.MAX_ASK_SIZE);
     }
 
     private void assertValidPrice(String price) {
-        assertTrue(price.matches("^\\d+\\.\\d{2}$") && Double.parseDouble(price) >= MIN_PRICE && Double.parseDouble(price) <= MAX_PRICE);
+        assertTrue(price.matches("^\\d+\\.\\d{2}$") && Double.parseDouble(price) >= Constants.MIN_PRICE && Double.parseDouble(price) <= Constants.MAX_PRICE);
     }
 
     private void assertValidSize(String size, int min, int max) {
